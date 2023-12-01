@@ -1,17 +1,21 @@
-import auth from '@react-native-firebase/auth';
+import React from 'react';
 
-import { Logout } from '@components/controllers/buttons/Logout';
+import { Cart } from '@components/controllers/buttons/Cart';
+import { Header } from '@components/layout/Header';
 
+import { ProductList } from './components/ProductList';
 import { Container } from './styles';
+import { useHomeController } from './useHomeController';
 
 export function Home() {
-  function handleLogout() {
-    auth().signOut();
-  }
-
+  const {
+    navigate: { navigateToCard },
+  } = useHomeController();
   return (
     <Container>
-      <Logout onPress={handleLogout} />
+      <Header />
+      <ProductList />
+      <Cart onPress={navigateToCard} />
     </Container>
   );
 }

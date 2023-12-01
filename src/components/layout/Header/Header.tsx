@@ -1,20 +1,24 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
-import { LogoutButton } from '@components/controllers/buttons/LogoutButton';
+import { CartIcon } from '@components/controllers/buttons/Cart';
 
 import { Container, Greeting, SubTitle, Title } from './styles';
 
 export function Header() {
-  function handleSignOut() {}
+  const navigate = useNavigation();
+
+  const handleNavigateToCart = () => {
+    navigate.navigate('cart');
+  };
 
   return (
     <Container>
       <Greeting>
-        <Title>HelpDesk</Title>
-        <SubTitle>Conte conosco, estamos aqui para ajudar.</SubTitle>
+        <Title>Cupcakes Store</Title>
+        <SubTitle>Delicie-se com o sabor da felicidade!</SubTitle>
       </Greeting>
-
-      <LogoutButton onPress={handleSignOut} />
+      <CartIcon onPress={handleNavigateToCart} />
     </Container>
   );
 }

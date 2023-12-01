@@ -1,4 +1,3 @@
-import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { Alert } from 'react-native';
@@ -6,17 +5,18 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import { Button } from '@components/controllers/buttons/Button';
 import { TextInput } from '@components/controllers/inputs/TextInput';
+import { useAuth } from '@hooks/useAuth';
 
 import { Container, FooterLink, FooterText, FooterView } from './styles';
 
 export function ForgotPassword() {
+  const { handleForgotPassword: handleSubmit } = useAuth();
   const [email, setEmail] = useState('');
 
   const navigate = useNavigation();
 
   function handleForgotPassword() {
-    auth()
-      .sendPasswordResetEmail(email)
+    handleSubmit(email)
       .then(() => {
         Alert.alert('Redefinição de senha', 'Enviamos um email para você');
       })

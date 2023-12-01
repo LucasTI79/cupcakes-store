@@ -13,6 +13,10 @@ export declare global {
       login: undefined;
       register: undefined;
       forgotPassword: undefined;
+      cart: undefined;
+      productDetails: {
+        product: Product;
+      };
     }
   }
 }

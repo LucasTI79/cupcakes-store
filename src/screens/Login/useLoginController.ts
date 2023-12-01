@@ -1,12 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useAuth } from '@hooks/useAuth';
+
 import { LoginSchema, LoginSchemaType } from './schema';
 
 export function useLoginController() {
+  const { handleLogin } = useAuth();
   const [loginErrorMessage, setLoginErrorMessage] = useState<string | null>(
     null,
   );
@@ -29,8 +31,7 @@ export function useLoginController() {
     handleSubmitHook((data) => {
       setIsSubmiting(true);
       const { email, password } = data;
-      auth()
-        .signInWithEmailAndPassword(email, password)
+      handleLogin(email, password)
         .then(() => setLoginErrorMessage(null))
         .catch((error) => {
           if (
