@@ -1,0 +1,12 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Product 1",
+      "price": 100,
+      "description": "This is product 1",
+      "weight": 500,
+      "image": "https://th.bing.com/th/id/OIP.GWbbeLgxmWcXWAx4ikfAngHaHN?rs=1&pid=ImgDetMain"
+    }
+  ]
+}
