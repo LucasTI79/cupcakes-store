@@ -1,13 +1,18 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "baseUrl": "./",
     "typeRoots": [
       "/node_modules/@types/**/*",
-      "/src/@types/**/*"
+      "/src/@types/**/*",
+      "jest/types"
     ],
     "paths": {
+      "@": [
+        "./src"
+      ],
       "@components/*": [
         "./src/components/*"
       ],
@@ -20,6 +25,27 @@
       "@hooks/*": [
         "./src/hooks/*"
       ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@models/*": [
+        "./src/models/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@context/*": [
+        "./src/context/*"
+      ],
+      "@lib/*": [
+        "./src/lib/*"
+      ],
+      "@theme/*": [
+        "./src/theme/*"
+      ],
     }
-  }
+  },
+  "include": [
+    "./src/**/*.test.ts"
+  ],
 }

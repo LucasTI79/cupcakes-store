@@ -15,11 +15,25 @@ module.exports = function(api) {
             '.json'
           ],
           alias: {
+            '@': './src',
             '@components': './src/components',
             '@screens': './src/screens',
             '@assets': './src/assets',
             '@hooks': './src/hooks',
+            '@services': './src/services',
+            '@models': './src/models',
+            '@utils': './src/utils',
+            '@context': './src/context',
+            '@lib': './src/lib',
+            '@theme': './src/theme',
           }
+        }
+      ],
+      [
+        'module:react-native-dotenv',
+        {
+          'moduleName': '@env',
+          'allowUndefined': false
         }
       ]
     ]
