@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import { FlatList, Text } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
+import { useTheme } from 'styled-components/native';
 
 import { Load } from '@components/controllers/loading/Load';
 import { HeaderBack } from '@components/layout/HeaderBack/HeaderBack';
-import theme from '@theme/index';
 import { currencyFormat } from '@utils/currencyFormat';
 
 import { ProductItemCart } from '../../../context/cart/types';
@@ -24,6 +24,7 @@ import {
 import { useCheckoutController } from './useCheckoutController';
 
 export function Checkout() {
+  const { COLORS } = useTheme();
   const {
     paymentForms,
     isLoading,
@@ -41,7 +42,7 @@ export function Checkout() {
         label: paymentForm.name,
         value: String(paymentForm.id),
         id: String(paymentForm.id),
-        color: theme.COLORS.PRIMARY,
+        color: COLORS.PRIMARY,
       })),
     [paymentForms],
   );
@@ -73,7 +74,7 @@ export function Checkout() {
         <OrderInfoTitle>Informações do pedido</OrderInfoTitle>
         <FlatList
           data={items}
-          keyExtractor={(item: ProductItemCart) => item.id!}
+          keyExtractor={(item: ProductItemCart) => item.product.id!}
           renderItem={({ item }) => (
             <OrderItemInfo
               productName={item.product.name}

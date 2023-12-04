@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 
 import { currencyFormat, decimalFormat } from '@utils/index';
 
@@ -10,6 +9,7 @@ import {
   Price,
   ProductImage,
   ProductInfo,
+  ProductInfoFooter,
   Title,
   Weight,
 } from './styles';
@@ -34,18 +34,10 @@ export function ProductCard({ product }: Readonly<ProductCardProps>) {
       <ProductInfo>
         <Title>{product.name}</Title>
         <Description>{`${description}`}</Description>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            width: 'auto',
-            gap: 16,
-          }}
-        >
+        <ProductInfoFooter>
           <Weight>{decimalFormat(product.weight, 1)} g</Weight>
           <Price>{currencyFormat(product.price)}</Price>
-        </View>
+        </ProductInfoFooter>
       </ProductInfo>
     </Container>
   );

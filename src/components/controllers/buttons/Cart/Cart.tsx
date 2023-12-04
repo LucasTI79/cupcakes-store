@@ -1,8 +1,7 @@
 import { ShoppingCart } from 'lucide-react-native';
 import React from 'react';
 import { TouchableOpacityProps } from 'react-native';
-
-import theme from '@theme/index';
+import { useTheme } from 'styled-components/native';
 
 import { Load } from '../../loading/Load';
 
@@ -13,6 +12,8 @@ type Props = TouchableOpacityProps & {
 };
 
 export function Cart({ isLoading = false, ...rest }: Props) {
+  const { COLORS } = useTheme();
+
   return (
     <Container disabled={isLoading} {...rest}>
       {isLoading ? (
@@ -20,7 +21,7 @@ export function Cart({ isLoading = false, ...rest }: Props) {
       ) : (
         <TextContainer>
           <Title>Finalizar compra</Title>
-          <ShoppingCart color={theme.COLORS.WHITE} />
+          <ShoppingCart color={COLORS.WHITE} />
         </TextContainer>
       )}
     </Container>

@@ -8,7 +8,7 @@ import { useAuth } from '@hooks/useAuth';
 import { RegisterSchema, RegisterSchemaType } from './schema';
 
 export function useRegisterController() {
-  const { handleRegister } = useAuth();
+  const { handleRegister, handleRegisterAdmin } = useAuth();
   const [registerErrorMessage, setRegisterErrorMessage] = useState<
     string | null
   >(null);
@@ -34,8 +34,11 @@ export function useRegisterController() {
   const handleSubmit = useCallback(
     handleSubmitHook((data) => {
       setIsSubmiting(true);
-      const { email, password } = data;
-      handleRegister(email, password)
+      const { email, password, fullname, isAdmin } = data;
+
+      const handler = isAdmin ? handleRegisterAdmin : handleRegister;
+
+      handler(email, password, fullname)
         .catch((error) => {
           setRegisterErrorMessage(error.message);
         })

@@ -2,8 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeIcon } from 'lucide-react-native';
 import React from 'react';
-
-import theme from '@theme/index';
+import { useTheme } from 'styled-components/native';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,12 +20,13 @@ function HomeStack() {
 }
 
 export function AdminRoutes() {
+  const { COLORS } = useTheme();
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: theme.COLORS.PRIMARY,
-        tabBarInactiveTintColor: theme.COLORS.SUBTEXT,
+        tabBarActiveTintColor: COLORS.PRIMARY,
+        tabBarInactiveTintColor: COLORS.SUBTEXT,
       }}
     >
       <Tab.Screen
@@ -37,9 +37,7 @@ export function AdminRoutes() {
           tabBarIcon(props) {
             return (
               <HomeIcon
-                color={
-                  props.focused ? theme.COLORS.PRIMARY : theme.COLORS.SUBTEXT
-                }
+                color={props.focused ? COLORS.PRIMARY : COLORS.SUBTEXT}
                 style={{ width: 24, height: 24 }}
               />
             );

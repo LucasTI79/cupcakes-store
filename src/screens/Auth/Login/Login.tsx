@@ -1,11 +1,11 @@
 import { Controller } from 'react-hook-form';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useTheme } from 'styled-components/native';
 
 import { Button } from '@components/controllers/buttons/Button';
 import { TextInput } from '@components/controllers/inputs/TextInput';
 import { ErrorMessage } from '@components/controllers/inputs/TextInput/styles';
 import { Logo } from '@components/view/Logo/Logo';
-import theme from '@theme/index';
 
 import {
   Container,
@@ -17,6 +17,7 @@ import {
 import { useLoginController } from './useLoginController';
 
 export function Login() {
+  const { COLORS } = useTheme();
   const {
     form: { control, formErrors, handleSubmit, isSubmiting, loginErrorMessage },
     navigate,
@@ -70,7 +71,7 @@ export function Login() {
             )}
           />
           <TextLink
-            color={theme.COLORS.SUBTEXT}
+            color={COLORS.SUBTEXT}
             onPress={handleNavigateToForgotPassword}
             style={{ alignSelf: 'flex-end' }}
           >

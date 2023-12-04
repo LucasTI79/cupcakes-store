@@ -1,9 +1,9 @@
 import { LogOut } from 'lucide-react-native';
 import React from 'react';
 import { TouchableOpacityProps } from 'react-native';
+import { useTheme } from 'styled-components/native';
 
 import { useAuth } from '@hooks/useAuth';
-import theme from '@theme/index';
 
 import { Load } from '../../loading/Load';
 
@@ -15,14 +15,16 @@ type Props = TouchableOpacityProps & {
 
 export function Logout({ isLoading = false, ...rest }: Props) {
   const { handleSignOut } = useAuth();
+  const { COLORS } = useTheme();
+
   return (
     <Container onPress={handleSignOut} disabled={isLoading} {...rest}>
       {isLoading ? (
         <Load />
       ) : (
         <TextContainer>
-          <Title>Sair</Title>
-          <LogOut color={theme.COLORS.WHITE} />
+          <Title>Sair do aplicativo</Title>
+          <LogOut color={COLORS.WHITE} />
         </TextContainer>
       )}
     </Container>

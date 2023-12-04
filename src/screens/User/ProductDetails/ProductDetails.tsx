@@ -1,9 +1,9 @@
 import { Minus, Plus } from 'lucide-react-native';
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+import { useTheme } from 'styled-components/native';
 
 import { HeaderBack } from '@components/layout/HeaderBack';
-import theme from '@theme/index';
 
 import { Container, Image, ImageContainer } from './styles';
 import { useProductDetailsController } from './useProductDetailsController';
@@ -24,6 +24,8 @@ export function ProductDetails({
   const { addCartItem, decreaseCartItem, getItemQuantity } =
     useProductDetailsController();
 
+  const { COLORS } = useTheme();
+
   const cartQuantity = getItemQuantity(product.id);
   const disableDecrease = cartQuantity === 0;
 
@@ -39,11 +41,11 @@ export function ProductDetails({
         disabled={disableDecrease}
         onPress={() => decreaseCartItem(product.id)}
       >
-        <Minus color={theme.COLORS.PRIMARY} />
+        <Minus color={COLORS.PRIMARY} />
       </TouchableOpacity>
       <Text>{cartQuantity}</Text>
       <TouchableOpacity onPress={() => addCartItem(product)}>
-        <Plus color={theme.COLORS.PRIMARY} />
+        <Plus color={COLORS.PRIMARY} />
       </TouchableOpacity>
     </Container>
   );

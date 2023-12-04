@@ -1,11 +1,10 @@
 import { Minus, Plus } from 'lucide-react-native';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import { useTheme } from 'styled-components/native';
 
-import theme from '@theme/index';
+import { ProductItemCart } from '@context/cart/types';
 import { currencyFormat } from '@utils/currencyFormat';
-
-import { ProductItemCart } from '../../../../context/cart/types';
 
 import {
   Container,
@@ -26,17 +25,19 @@ type CartCardProps = {
 };
 
 export function CartCard({ item }: CartCardProps) {
+  const { COLORS } = useTheme();
+
   const { addCartItem, decreaseCartItem, getItemQuantity, goToProductDetails } =
     useCartCardController();
 
   const { product } = item;
-  const cartQuantity = getItemQuantity(product.id);
+  const cartQuantity = getItemQuantity(product.id!);
   const disableDecrease = cartQuantity === 0;
   const imageUrl = product.image ?? 'https://picsum.photos/200/300';
 
   return (
     <Container>
-      <Content onPress={goToProductDetails}>
+      <Content onPress={() => goToProductDetails(product)}>
         <ImageContainer>
           <ProductImage source={{ uri: imageUrl }} />
         </ImageContainer>
@@ -53,13 +54,13 @@ export function CartCard({ item }: CartCardProps) {
         <QuantityContainer>
           <TouchableOpacity
             disabled={disableDecrease}
-            onPress={() => decreaseCartItem(product.id)}
+            onPress={() => decreaseCartItem(product.id!)}
           >
-            <Minus color={theme.COLORS.PRIMARY} />
+            <Minus color={COLORS.PRIMARY} />
           </TouchableOpacity>
           <Text>{cartQuantity}</Text>
           <TouchableOpacity onPress={() => addCartItem(product)}>
-            <Plus color={theme.COLORS.PRIMARY} />
+            <Plus color={COLORS.PRIMARY} />
           </TouchableOpacity>
         </QuantityContainer>
       </FooterContainer>

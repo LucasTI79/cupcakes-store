@@ -6,6 +6,7 @@ export const RegisterSchema = z
     email: z
       .string({ required_error: 'Email is required' })
       .email({ message: 'Invalid email' }),
+    isAdmin: z.boolean().default(false),
     password: z
       .string({ required_error: 'Password is required' })
       .min(6)

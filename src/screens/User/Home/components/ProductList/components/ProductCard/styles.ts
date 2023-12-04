@@ -6,7 +6,7 @@ export const Container = styled.TouchableOpacity`
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  padding: 8px;
+  padding: 12px;
   margin: 8px 0px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.COLORS.WHITE};
@@ -28,7 +28,14 @@ export const ProductInfo = styled.View`
   align-items: flex-start;
   width: 100%;
   flex: 1;
-  gap: 4px;
+  gap: 8px;
+`;
+
+export const ProductInfoFooter = styled.View`
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
 `;
 
 export const Title = styled.Text`
@@ -50,7 +57,7 @@ export const Price = styled.Text`
 `;
 
 export const Weight = styled.Text`
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
   color: ${({ theme }) => theme.COLORS.SUBTEXT};
 `;

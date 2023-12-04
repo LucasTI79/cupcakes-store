@@ -43,8 +43,5 @@
         "./src/theme/*"
       ],
     }
-  },
-  "include": [
-    "./src/**/*.test.ts"
-  ],
+  }
 }

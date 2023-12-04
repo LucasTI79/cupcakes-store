@@ -2,13 +2,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeIcon, ShoppingCartIcon, UserIcon } from 'lucide-react-native';
 import React from 'react';
+import { useTheme } from 'styled-components/native';
 
 import { Cart } from '@screens/User/Cart';
 import { Checkout } from '@screens/User/Checkout';
 import { Home } from '@screens/User/Home';
 import { ProductDetails } from '@screens/User/ProductDetails';
 import { Profile } from '@screens/User/Profile';
-import theme from '@theme/index';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -38,12 +38,13 @@ function CartStack() {
 }
 
 export function AppRoutes() {
+  const { COLORS } = useTheme();
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: theme.COLORS.PRIMARY,
-        tabBarInactiveTintColor: theme.COLORS.SUBTEXT,
+        tabBarActiveTintColor: COLORS.PRIMARY,
+        tabBarInactiveTintColor: COLORS.SUBTEXT,
       }}
     >
       <Tab.Screen
@@ -54,9 +55,7 @@ export function AppRoutes() {
           tabBarIcon(props) {
             return (
               <HomeIcon
-                color={
-                  props.focused ? theme.COLORS.PRIMARY : theme.COLORS.SUBTEXT
-                }
+                color={props.focused ? COLORS.PRIMARY : COLORS.SUBTEXT}
                 style={{ width: 24, height: 24 }}
               />
             );
@@ -71,9 +70,7 @@ export function AppRoutes() {
           tabBarIcon(props) {
             return (
               <ShoppingCartIcon
-                color={
-                  props.focused ? theme.COLORS.PRIMARY : theme.COLORS.SUBTEXT
-                }
+                color={props.focused ? COLORS.PRIMARY : COLORS.SUBTEXT}
                 style={{ width: 24, height: 24 }}
               />
             );
@@ -88,9 +85,7 @@ export function AppRoutes() {
           tabBarIcon(props) {
             return (
               <UserIcon
-                color={
-                  props.focused ? theme.COLORS.PRIMARY : theme.COLORS.SUBTEXT
-                }
+                color={props.focused ? COLORS.PRIMARY : COLORS.SUBTEXT}
                 style={{ width: 24, height: 24 }}
               />
             );

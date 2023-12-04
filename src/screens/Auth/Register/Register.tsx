@@ -1,7 +1,9 @@
 import { Controller } from 'react-hook-form';
+import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { Button } from '@components/controllers/buttons/Button';
+import { Switch } from '@components/controllers/inputs/Switch';
 import { TextInput } from '@components/controllers/inputs/TextInput';
 import { ErrorMessage } from '@components/controllers/inputs/TextInput/styles';
 import { Logo } from '@components/view/Logo/Logo';
@@ -40,7 +42,7 @@ export function Register() {
             name="fullname"
             render={({ field: { onChange, value } }) => (
               <TextInput
-                placeholder="Full Name"
+                placeholder="Nome completo"
                 placeholderTextColor="#aaaaaa"
                 onChangeText={onChange}
                 value={value}
@@ -72,7 +74,7 @@ export function Register() {
             name="password"
             render={({ field: { onChange, value } }) => (
               <TextInput
-                placeholder="Password"
+                placeholder="Senha"
                 placeholderTextColor="#aaaaaa"
                 onChangeText={onChange}
                 value={value}
@@ -87,7 +89,7 @@ export function Register() {
             name="confirmPassword"
             render={({ field: { onChange, value } }) => (
               <TextInput
-                placeholder="Confirm Password"
+                placeholder="Confirmação de senha"
                 placeholderTextColor="#aaaaaa"
                 onChangeText={onChange}
                 value={value}
@@ -95,6 +97,19 @@ export function Register() {
                 autoCapitalize="none"
                 errorMessage={formErrors?.confirmPassword?.message}
               />
+            )}
+          />
+          <Controller
+            control={control}
+            name="isAdmin"
+            render={({ field: { onChange, value } }) => (
+              <View style={{ alignItems: 'flex-start' }}>
+                <Switch
+                  label="Admin"
+                  onChange={() => onChange(!value)}
+                  value={value}
+                />
+              </View>
             )}
           />
         </InputContainer>
