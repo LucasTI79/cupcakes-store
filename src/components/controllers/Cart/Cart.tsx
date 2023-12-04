@@ -1,8 +1,7 @@
-import { LogOut } from 'lucide-react-native';
+import { ShoppingCart } from 'lucide-react-native';
 import React from 'react';
 import { TouchableOpacityProps } from 'react-native';
 
-import { useAuth } from '@hooks/useAuth';
 import theme from '@theme/index';
 
 import { Load } from '../../loading/Load';
@@ -13,16 +12,15 @@ type Props = TouchableOpacityProps & {
   isLoading?: boolean;
 };
 
-export function Logout({ isLoading = false, ...rest }: Props) {
-  const { handleSignOut } = useAuth();
+export function Cart({ isLoading = false, ...rest }: Props) {
   return (
-    <Container onPress={handleSignOut} disabled={isLoading} {...rest}>
+    <Container disabled={isLoading} {...rest}>
       {isLoading ? (
         <Load />
       ) : (
         <TextContainer>
-          <Title>Sair</Title>
-          <LogOut color={theme.COLORS.WHITE} />
+          <Title>Finalizar compra</Title>
+          <ShoppingCart color={theme.COLORS.WHITE} />
         </TextContainer>
       )}
     </Container>

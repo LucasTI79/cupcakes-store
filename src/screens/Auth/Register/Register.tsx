@@ -110,7 +110,7 @@ export function Register() {
         <FooterView>
           <FooterText>
             {' '}
-            Already got an account?{' '}
+            Já tem uma conta?{' '}
             <TextLink onPress={handleNavigateToLogin}>Login</TextLink>
           </FooterText>
         </FooterView>

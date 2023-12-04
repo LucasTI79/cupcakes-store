@@ -1,4 +1,3 @@
-import theme from '@theme/index';
 import { Controller } from 'react-hook-form';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -6,6 +5,7 @@ import { Button } from '@components/controllers/buttons/Button';
 import { TextInput } from '@components/controllers/inputs/TextInput';
 import { ErrorMessage } from '@components/controllers/inputs/TextInput/styles';
 import { Logo } from '@components/view/Logo/Logo';
+import theme from '@theme/index';
 
 import {
   Container,
@@ -60,7 +60,7 @@ export function Login() {
               <TextInput
                 placeholderTextColor="#aaaaaa"
                 secureTextEntry
-                placeholder="Password"
+                placeholder="Senha"
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
                 value={value}
@@ -74,20 +74,20 @@ export function Login() {
             onPress={handleNavigateToForgotPassword}
             style={{ alignSelf: 'flex-end' }}
           >
-            Forgot password
+            Esqueci minha senha
           </TextLink>
         </InputContainer>
         <Button
           onPress={() => handleSubmit()}
-          title="Login"
+          title="Entrar"
           isLoading={isSubmiting}
         />
         {loginErrorMessage && <ErrorMessage>{loginErrorMessage}</ErrorMessage>}
         <FooterView>
           <FooterText>
             {' '}
-            Don&apos;t have an account?{' '}
-            <TextLink onPress={handleNavigateToRegister}>Sign up</TextLink>
+            Não tem uma conta?{' '}
+            <TextLink onPress={handleNavigateToRegister}>Criar conta</TextLink>
           </FooterText>
         </FooterView>
       </Container>

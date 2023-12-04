@@ -3,10 +3,12 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback } from 'react';
 
 import { useAuth } from '@hooks/useAuth';
+import { useCart } from '@hooks/useCart';
 import { getProducts } from '@services/products';
 
 export function useHomeController() {
   const { handleSignOut } = useAuth();
+  const { items } = useCart();
   const navigate = useNavigation();
   const { data, isLoading, isError, error, refetch } = useQuery({
     queryFn: getProducts,
@@ -28,5 +30,6 @@ export function useHomeController() {
       navigate,
       navigateToCard,
     },
+    items,
   };
 }

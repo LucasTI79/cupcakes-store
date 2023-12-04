@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -50,8 +50,8 @@ export function ForgotPassword() {
         <FooterView>
           <FooterText>
             {' '}
-            Remember account?{' '}
-            <FooterLink onPress={handleNavigateToLogin}>Login</FooterLink>
+            Lembrou sua conta?{' '}
+            <FooterLink onPress={handleNavigateToLogin}>Entrar</FooterLink>
           </FooterText>
         </FooterView>
       </Container>

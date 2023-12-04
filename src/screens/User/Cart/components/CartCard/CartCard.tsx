@@ -1,6 +1,6 @@
 import { Minus, Plus } from 'lucide-react-native';
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 import theme from '@theme/index';
 import { currencyFormat } from '@utils/currencyFormat';
@@ -9,7 +9,10 @@ import { ProductItemCart } from '../../../../context/cart/types';
 
 import {
   Container,
+  Content,
+  FooterContainer,
   ImageContainer,
+  Observations,
   Price,
   ProductImage,
   ProductInfo,
@@ -23,7 +26,7 @@ type CartCardProps = {
 };
 
 export function CartCard({ item }: CartCardProps) {
-  const { addCartItem, decreaseCartItem, getItemQuantity } =
+  const { addCartItem, decreaseCartItem, getItemQuantity, goToProductDetails } =
     useCartCardController();
 
   const { product } = item;
@@ -33,11 +36,19 @@ export function CartCard({ item }: CartCardProps) {
 
   return (
     <Container>
-      <ImageContainer>
-        <ProductImage source={{ uri: imageUrl }} />
-      </ImageContainer>
-      <ProductInfo>
-        <Title>{product.name}</Title>
+      <Content onPress={goToProductDetails}>
+        <ImageContainer>
+          <ProductImage source={{ uri: imageUrl }} />
+        </ImageContainer>
+        <ProductInfo>
+          <View>
+            <Title>{product.name}</Title>
+            <Text>{item.quantity}x</Text>
+          </View>
+          <Observations>Nenhuma</Observations>
+        </ProductInfo>
+      </Content>
+      <FooterContainer>
         <Price>{currencyFormat(product.price * item.quantity)}</Price>
         <QuantityContainer>
           <TouchableOpacity
@@ -51,7 +62,7 @@ export function CartCard({ item }: CartCardProps) {
             <Plus color={theme.COLORS.PRIMARY} />
           </TouchableOpacity>
         </QuantityContainer>
-      </ProductInfo>
+      </FooterContainer>
     </Container>
   );
 }

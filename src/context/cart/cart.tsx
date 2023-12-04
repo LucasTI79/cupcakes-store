@@ -11,7 +11,8 @@ import { Cart, ProductItemCart } from './types';
 type CartAction =
   | { type: 'ADD_TO_CART'; payload: Product }
   | { type: 'REMOVE_FROM_CART'; payload: string }
-  | { type: 'DECREASE_QUANTITY'; payload: string };
+  | { type: 'DECREASE_QUANTITY'; payload: string }
+  | { type: 'CLEAR_CART'; payload: undefined };
 
 type CartContextType = {
   items: ProductItemCart[];
@@ -19,7 +20,7 @@ type CartContextType = {
   addCartItem: (product: Product) => void;
   removeCartItem: (itemId: string) => void;
   decreaseCartItem: (itemId: string) => void;
-  getCartTotal: number;
+  total: number;
   getItemQuantity: (itemId: string) => number;
 };
 
@@ -48,6 +49,8 @@ const cartReducer = (state: Cart, action: CartAction): Cart => {
         (item) => item.product.id !== payload,
       );
       return { items: updatedCart };
+    case 'CLEAR_CART':
+      return { items: [] };
     case 'DECREASE_QUANTITY':
       const itemToDecrease = state.items.find(
         (item) => item.product.id === action.payload,
@@ -86,14 +89,18 @@ export function CartProvider({ children }: Readonly<{ children: ReactNode }>) {
     dispatch({ type: 'REMOVE_FROM_CART', payload: itemId });
   }, []);
 
+  const clearCart = useCallback(() => {
+    dispatch({ type: 'CLEAR_CART', payload: undefined });
+  }, []);
+
   const getItemQuantity = useCallback(
     (itemId: string) =>
       state.items.find((item) => item.product.id === itemId)?.quantity ?? 0,
     [state],
   );
 
-  const getCartTotal = state.items.reduce(
-    (acc, item) => item.product.price * item.quantity,
+  const total = state.items.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
     0,
   );
 
@@ -103,18 +110,20 @@ export function CartProvider({ children }: Readonly<{ children: ReactNode }>) {
       dispatch,
       addCartItem,
       removeCartItem,
-      getCartTotal,
+      total,
       getItemQuantity,
       decreaseCartItem,
+      clearCart,
     }),
     [
       state.items,
       dispatch,
       addCartItem,
       removeCartItem,
-      getCartTotal,
+      total,
       getItemQuantity,
       decreaseCartItem,
+      clearCart,
     ],
   );
 

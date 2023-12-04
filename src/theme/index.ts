@@ -9,6 +9,8 @@ export default {
     TEXT_ERROR: '#ef4444',
     SUBTEXT: '#8D919E',
 
+    DISABLED: '#bbb',
+
     WHITE: '#FFFFFF',
     BORDER: '#C5CADA',
   },

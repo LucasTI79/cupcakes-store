@@ -22,5 +22,4 @@ export const Title = styled.Text`
   font-size: 14px;
   color: ${({ theme }) => theme.COLORS.WHITE};
   font-family: ${({ theme }) => theme.FONTS.TEXT};
-  font-weight: bold;
 `;
