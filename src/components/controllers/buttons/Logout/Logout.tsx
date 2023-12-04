@@ -1,9 +1,12 @@
-import theme from '@theme/index';
 import { LogOut } from 'lucide-react-native';
 import React from 'react';
 import { TouchableOpacityProps } from 'react-native';
 
-import { Container, Load, TextContainer, Title } from './styles';
+import theme from '@theme/index';
+
+import { Load } from '../../loading/Load';
+
+import { Container, TextContainer, Title } from './styles';
 
 type Props = TouchableOpacityProps & {
   isLoading?: boolean;

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
-import { CartIcon } from '@components/controllers/buttons/Cart';
+import { CartIcon } from '../../controllers/buttons/Cart/components/CartIcon';
 
 import { Container, Greeting, SubTitle, Title } from './styles';
 

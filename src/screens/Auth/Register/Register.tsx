@@ -5,9 +5,14 @@ import { Button } from '@components/controllers/buttons/Button';
 import { TextInput } from '@components/controllers/inputs/TextInput';
 import { ErrorMessage } from '@components/controllers/inputs/TextInput/styles';
 import { Logo } from '@components/view/Logo/Logo';
-import { TextLink } from '@screens/Login/styles';
 
-import { Container, FooterText, FooterView, InputContainer } from './styles';
+import {
+  Container,
+  FooterText,
+  FooterView,
+  InputContainer,
+  TextLink,
+} from './styles';
 import { useRegisterController } from './useRegisterController';
 
 export function Register() {

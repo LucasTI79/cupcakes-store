@@ -1,11 +1,12 @@
+import React from 'react';
 import { FlatList, Text } from 'react-native';
 
-import { Load } from '@components/controllers/buttons/Logout/styles';
+import { Load } from '@components/controllers/loading/Load';
 
 import { useHomeController } from '../../useHomeController';
 
 import { ProductCard } from './components/ProductCard';
-import { Container, Content } from './styles';
+import { Container, Content, ProductListTitle } from './styles';
 
 export function ProductList() {
   const {
@@ -25,14 +26,14 @@ export function ProductList() {
   if (!products?.length) {
     return (
       <Container>
-        <Text>No products found</Text>
+        <Text>Não encontramos nenhum produto</Text>
       </Container>
     );
   }
 
   return (
     <Container>
-      <Text>Products: {products.length}</Text>
+      <ProductListTitle>Total de produtos: {products.length}</ProductListTitle>
       <Content>
         <FlatList
           data={products}
@@ -40,7 +41,7 @@ export function ProductList() {
           refreshing={isLoading}
           keyExtractor={(item: Product) => item.id!}
           renderItem={({ item }) => <ProductCard product={item} />}
-          contentContainerStyle={{ paddingBottom: 100 }}
+          contentContainerStyle={{ paddingBottom: 50 }}
           showsVerticalScrollIndicator={false}
           style={{ flex: 1 }}
         />

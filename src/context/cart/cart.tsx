@@ -6,7 +6,7 @@ import React, {
   useReducer,
 } from 'react';
 
-import { Cart } from './types';
+import { Cart, ProductItemCart } from './types';
 
 type CartAction =
   | { type: 'ADD_TO_CART'; payload: Product }
@@ -14,7 +14,7 @@ type CartAction =
   | { type: 'DECREASE_QUANTITY'; payload: string };
 
 type CartContextType = {
-  state: Cart;
+  items: ProductItemCart[];
   dispatch: React.Dispatch<CartAction>;
   addCartItem: (product: Product) => void;
   removeCartItem: (itemId: string) => void;
@@ -99,7 +99,7 @@ export function CartProvider({ children }: Readonly<{ children: ReactNode }>) {
 
   const contextValue = useMemo(
     () => ({
-      state,
+      items: state.items,
       dispatch,
       addCartItem,
       removeCartItem,
@@ -108,7 +108,7 @@ export function CartProvider({ children }: Readonly<{ children: ReactNode }>) {
       decreaseCartItem,
     }),
     [
-      state,
+      state.items,
       dispatch,
       addCartItem,
       removeCartItem,

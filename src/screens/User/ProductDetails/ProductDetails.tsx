@@ -1,7 +1,8 @@
 import { Minus, Plus } from 'lucide-react-native';
+import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
-import { GoBack } from '@components/controllers/buttons/GoBack';
+import { HeaderBack } from '@components/layout/HeaderBack';
 import theme from '@theme/index';
 
 import { Container, Image, ImageContainer } from './styles';
@@ -20,19 +21,19 @@ export function ProductDetails({
     params: { product },
   },
 }: Readonly<ProductDetailsProps>) {
-  const { goBack, addCartItem, decreaseCartItem, getItemQuantity } =
+  const { addCartItem, decreaseCartItem, getItemQuantity } =
     useProductDetailsController();
 
   const cartQuantity = getItemQuantity(product.id);
   const disableDecrease = cartQuantity === 0;
 
-  const image = product.image ?? 'https://picsum.photos/200/300';
+  const imageUrl = product.image ?? 'https://picsum.photos/200/300';
 
   return (
     <Container>
-      <GoBack onPress={goBack} />
+      <HeaderBack />
       <ImageContainer>
-        <Image source={{ uri: image }} />
+        <Image source={{ uri: imageUrl }} />
       </ImageContainer>
       <TouchableOpacity
         disabled={disableDecrease}

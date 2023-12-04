@@ -23,7 +23,3 @@ export const Title = styled.Text`
   color: ${({ theme }) => theme.COLORS.WHITE};
   font-family: ${({ theme }) => theme.FONTS.TEXT};
 `;
-
-export const Load = styled.ActivityIndicator.attrs(({ theme }) => ({
-  color: theme.COLORS.WHITE,
-}))``;
