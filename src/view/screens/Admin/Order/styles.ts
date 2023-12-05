@@ -11,6 +11,13 @@ export const Container = styled.View`
   gap: 16px;
 `;
 
+export const Header = styled.View`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+`;
+
 export const Title = styled.Text`
   font-size: 24px;
   font-family: ${({ theme }) => theme.FONTS.TITLE};

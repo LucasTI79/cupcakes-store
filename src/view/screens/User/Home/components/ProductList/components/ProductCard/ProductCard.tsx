@@ -16,7 +16,7 @@ import {
 import { useProductCardController } from './useProductCardController';
 
 type ProductCardProps = {
-  product: Product;
+  product: ProductResponse;
 };
 
 export function ProductCard({ product }: Readonly<ProductCardProps>) {

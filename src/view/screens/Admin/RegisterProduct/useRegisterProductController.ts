@@ -37,7 +37,7 @@ export function useRegisterProductController() {
           weight: Number(data.weight),
           active: data.active,
           image: data.image,
-          userId: user!.uid!,
+          userId: user!.uid,
         });
         reset();
         navigate.navigate('products');

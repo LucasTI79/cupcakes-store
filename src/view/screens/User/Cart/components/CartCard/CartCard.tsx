@@ -24,7 +24,7 @@ type CartCardProps = {
   item: Required<ProductItemCart>;
 };
 
-export function CartCard({ item }: CartCardProps) {
+export function CartCard({ item }: Readonly<CartCardProps>) {
   const { COLORS } = useTheme();
 
   const { addCartItem, decreaseCartItem, getItemQuantity, goToProductDetails } =

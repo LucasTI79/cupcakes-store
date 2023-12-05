@@ -1,9 +1,11 @@
 export interface IOrderService {
-  list(): Promise<Order[]>;
-  listBuyerOrders(userId: string): Promise<Order[]>;
-  listSellerOrders(userId: string): Promise<Order[]>;
-  get(orderId: string): Promise<Order | null>;
-  save(order: Order): Promise<void>;
-  update(orderId: string, order: Order): Promise<void>;
+  list(): Promise<OrderResponse[]>;
+  listBuyerOrders(userId: string): Promise<OrderResponse[]>;
+  listSellerOrders(userId: string): Promise<OrderResponse[]>;
+  get(orderId: string): Promise<OrderResponse | null>;
+  save(order: OrderRequest): Promise<void>;
+  completeOrder(orderId: string): Promise<void>;
+  cancelOrder(orderId: string): Promise<void>;
+  update(orderId: string, order: OrderRequest): Promise<void>;
   deleteProduct(orderId: string): Promise<void>;
 }

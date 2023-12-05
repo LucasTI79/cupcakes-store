@@ -15,3 +15,11 @@ export function Button({ title, isLoading = false, ...rest }: Props) {
     </Container>
   );
 }
+
+export function ButtonOutline({ title, isLoading = false, ...rest }: Props) {
+  return (
+    <Container isOutline disabled={isLoading} {...rest}>
+      {isLoading ? <Load /> : <Title isOutline>{title}</Title>}
+    </Container>
+  );
+}

@@ -16,6 +16,7 @@ interface ProductRequest extends Omit<Product, 'id'> {
 
 interface ProductResponse extends Product {
   price: number;
+  productRecordId: string;
 }
 
 type UserCustom = {
@@ -44,7 +45,13 @@ type Order = {
   sellerId: string;
   buyerId: string;
   paymentMethod: PaymentMethods;
-  products: { product: ProductRecord; quantity: number }[];
+  products: {
+    product: Pick<
+      ProductResponse,
+      'id' | 'userId' | 'productRecordId' | 'price'
+    >;
+    quantity: number;
+  }[];
   total: number;
   status: OrderStatus;
   createdAt: Date;
@@ -55,7 +62,30 @@ type OrderRequest = {
   sellerId: string;
   buyerId: string;
   paymentMethod: PaymentMethods;
-  products: { product: ProductRecord; quantity: number }[];
+  products: {
+    product: Pick<
+      ProductResponse,
+      'id' | 'userId' | 'productRecordId' | 'price'
+    >;
+    quantity: number;
+  }[];
   total: number;
   status: OrderStatus;
+};
+
+type OrderResponse = {
+  id: string;
+  sellerId: string;
+  sellerName: string;
+  buyerId: string;
+  buyerName: string;
+  paymentMethod: PaymentMethods;
+  products: {
+    product: ProductResponse;
+    quantity: number;
+  }[];
+  total: number;
+  status: OrderStatus;
+  createdAt: Date;
+  updatedAt: Date;
 };

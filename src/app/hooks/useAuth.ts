@@ -6,9 +6,11 @@ import { getUsersStore } from '@lib/firebase/firestore';
 
 export const getCurrentUser = async () => {
   const user = auth().currentUser;
+
   if (user) {
     const extraData = await getUsersStore.doc(user?.uid).get();
-    const response = { ...user, extraData };
+    const dataExtract = extraData.data();
+    const response = { ...user, ...dataExtract };
     return response;
   }
 

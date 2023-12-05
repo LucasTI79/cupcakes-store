@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
+import { Controller } from 'react-hook-form';
 import { FlatList, Text } from 'react-native';
-import RadioGroup from 'react-native-radio-buttons-group';
 import { useTheme } from 'styled-components/native';
 
+import { RadioGroupInput } from '@components/controllers/inputs/RadioGroupInput';
 import { Load } from '@components/controllers/loading/Load';
 import { HeaderBack } from '@components/layout/HeaderBack/HeaderBack';
 import { ProductItemCart } from '@context/cart/types';
@@ -27,13 +28,11 @@ export function Checkout() {
   const {
     paymentForms,
     isLoading,
-    handleChangePaymentForm,
-    selectedPaymentForm,
     items,
     total,
+    hasPaymentForm,
+    form: { control, formErrors, isSubmiting, errorMessage, handleSubmit },
   } = useCheckoutController();
-
-  const hasPaymentFormSelected = !!selectedPaymentForm;
 
   const radioButtons = useMemo(
     () =>
@@ -62,11 +61,18 @@ export function Checkout() {
       <Title>Checkout</Title>
       <Label>Selecione a forma de pagamento</Label>
       <PaymentFormContainer>
-        <RadioGroup
-          radioButtons={radioButtons}
-          onPress={(data) => handleChangePaymentForm(data)}
-          selectedId={selectedPaymentForm}
-          containerStyle={{ alignItems: 'flex-start' }}
+        <Controller
+          control={control}
+          name="paymentMethod"
+          render={({ field: { onChange } }) => (
+            <RadioGroupInput
+              radioButtons={radioButtons}
+              data={paymentForms}
+              onChange={onChange}
+              errorMessage={formErrors.paymentMethod?.message}
+              containerStyle={{ alignItems: 'flex-start' }}
+            />
+          )}
         />
       </PaymentFormContainer>
       <OrderInfoContainer>
@@ -83,10 +89,14 @@ export function Checkout() {
         />
       </OrderInfoContainer>
       <OrderTotal>{currencyFormat(total)}</OrderTotal>
-      {!hasPaymentFormSelected && <Text>Selecione uma forma de pagamento</Text>}
-      <FinishPaymentButton disabled={!hasPaymentFormSelected}>
+      {!hasPaymentForm && <Text>Selecione uma forma de pagamento</Text>}
+      <FinishPaymentButton
+        disabled={!hasPaymentForm || isSubmiting}
+        onPress={handleSubmit}
+      >
         <FinishPaymentText>Realizar pagamento</FinishPaymentText>
       </FinishPaymentButton>
+      {errorMessage && <Text>{errorMessage}</Text>}
     </Container>
   );
 }

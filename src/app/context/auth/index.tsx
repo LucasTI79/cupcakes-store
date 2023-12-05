@@ -3,7 +3,7 @@ import React, { createContext, useEffect, useMemo, useState } from 'react';
 
 import { getUsersStore } from '@lib/firebase/firestore';
 
-type MyUser = FirebaseAuthTypes.User & { isAdmin?: boolean };
+type MyUser = FirebaseAuthTypes.User & { fullname?: string; isAdmin?: boolean };
 
 type AuthContextType = {
   user: MyUser | null;
@@ -32,6 +32,7 @@ export function AuthProvider({
           const data = userData.data();
           const newUserData: MyUser = {
             ...response,
+            fullname: data?.fullname,
             uid: response?.uid,
             isAdmin: data?.role === 'ADMIN',
           } as MyUser;

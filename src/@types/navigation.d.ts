@@ -19,6 +19,10 @@ export declare global {
       productDetails: {
         product: Product;
       };
+      orderDetails: {
+        order: OrderResponse;
+      };
+      order: undefined;
       editProduct: undefined;
       products: undefined;
       registerProduct: undefined;

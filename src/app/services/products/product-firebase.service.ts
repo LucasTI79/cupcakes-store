@@ -36,8 +36,8 @@ export class ProductFirebaseService implements IProductService {
           .limit(1)
           .get();
 
-        const productRecordData =
-          productRecord.docs?.[0]?.data() as ProductRecord;
+        const productRecordDoc = productRecord.docs?.[0];
+        const productRecordData = productRecordDoc?.data() as ProductRecord;
 
         return {
           id: doc.id,
@@ -47,7 +47,8 @@ export class ProductFirebaseService implements IProductService {
           description: productData.description,
           userId: productData.userId,
           price: productRecordData?.price || 0,
-        } as ProductResponse;
+          productRecordId: productRecordDoc?.id,
+        };
       }),
     );
   }
@@ -67,8 +68,8 @@ export class ProductFirebaseService implements IProductService {
           .limit(1)
           .get();
 
-        const productRecordData =
-          productRecord.docs?.[0]?.data() as ProductRecord;
+        const productRecordDoc = productRecord.docs?.[0];
+        const productRecordData = productRecordDoc?.data() as ProductRecord;
 
         return {
           id: doc.id,
@@ -78,7 +79,8 @@ export class ProductFirebaseService implements IProductService {
           description: productData.description,
           userId: productData.userId,
           price: productRecordData?.price || 0,
-        } as ProductResponse;
+          productRecordId: productRecordDoc?.id,
+        };
       }),
     );
   }
@@ -87,20 +89,20 @@ export class ProductFirebaseService implements IProductService {
     const docSnapshot = await getProductStore.doc(productId).get();
     if (docSnapshot.exists) {
       const productData = docSnapshot.data() as Product;
-
       const productRecord = await getProductRecordStore
-        .where('productId', '==', productData.id)
+        .where('productId', '==', docSnapshot.id)
         .orderBy('createdAt', 'desc')
         .limit(1)
         .get();
 
-      const productRecordData =
-        productRecord.docs?.[0]?.data() as ProductRecord;
+      const productRecordDoc = productRecord.docs?.[0];
+      const productRecordData = productRecordDoc?.data() as ProductRecord;
 
       return {
         ...productData,
         price: productRecordData?.price || 0,
         id: docSnapshot.id,
+        productRecordId: productRecordDoc?.id,
       };
     }
 

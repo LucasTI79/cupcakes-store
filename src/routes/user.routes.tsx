@@ -1,6 +1,13 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unstable-nested-components */
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeIcon, ShoppingCartIcon, UserIcon } from 'lucide-react-native';
+import {
+  HomeIcon,
+  PackageIcon,
+  ShoppingCartIcon,
+  UserIcon,
+} from 'lucide-react-native';
 import React from 'react';
 import { useTheme } from 'styled-components/native';
 
@@ -8,6 +15,8 @@ import { Profile } from '@screens/Common/Profile';
 import { Cart } from '@screens/User/Cart';
 import { Checkout } from '@screens/User/Checkout';
 import { Home } from '@screens/User/Home';
+import { Order } from '@screens/User/Order';
+import { OrderDetails } from '@screens/User/OrderDetails';
 import { ProductDetails } from '@screens/User/ProductDetails';
 
 const { Navigator, Screen } = createNativeStackNavigator();
@@ -18,6 +27,15 @@ function HomeStack() {
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="homeStack" component={Home} />
       <Screen name="productDetails" component={ProductDetails} />
+    </Navigator>
+  );
+}
+
+function OrderStack() {
+  return (
+    <Navigator screenOptions={{ headerShown: false }}>
+      <Screen name="order" component={Order} />
+      <Screen name="orderDetails" component={OrderDetails} />
     </Navigator>
   );
 }
@@ -37,7 +55,7 @@ function CartStack() {
   );
 }
 
-export function AppRoutes() {
+export function UserRoutes() {
   const { COLORS } = useTheme();
   return (
     <Tab.Navigator
@@ -70,6 +88,21 @@ export function AppRoutes() {
           tabBarIcon(props) {
             return (
               <ShoppingCartIcon
+                color={props.focused ? COLORS.PRIMARY : COLORS.SUBTEXT}
+                style={{ width: 24, height: 24 }}
+              />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="orderStack"
+        component={OrderStack}
+        options={{
+          title: 'Pedidos',
+          tabBarIcon(props) {
+            return (
+              <PackageIcon
                 color={props.focused ? COLORS.PRIMARY : COLORS.SUBTEXT}
                 style={{ width: 24, height: 24 }}
               />

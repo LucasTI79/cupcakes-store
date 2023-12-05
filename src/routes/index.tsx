@@ -5,8 +5,8 @@ import { Load } from '@components/controllers/loading/Load';
 import { useAuth } from '@hooks/useAuth';
 
 import { AdminRoutes } from './admin.routes';
-import { AppRoutes } from './app.routes';
 import { AuthRoutes } from './auth.routes';
+import { UserRoutes } from './user.routes';
 
 export function Routes() {
   const { isLoading, user, isAdmin } = useAuth();
@@ -25,7 +25,7 @@ export function Routes() {
 
   return (
     <NavigationContainer>
-      {isAdmin ? <AdminRoutes /> : <AppRoutes />}
+      {isAdmin ? <AdminRoutes /> : <UserRoutes />}
     </NavigationContainer>
   );
 }
