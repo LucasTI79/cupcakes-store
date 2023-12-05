@@ -1,8 +1,6 @@
-# CupcakeApp
+# Cupcake Store
 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/dinoknot/ToDo_App_Room_MVVM/blob/main/LICENSE)
-
-# About
 
 Este aplicativo foi desenvolvido como projeto de conclusão de curso do de Engenharia de Software na Faculdade Cruzeiro do Sul.
 
@@ -12,21 +10,45 @@ Nele é possível escolher quantos Cupcakes quiser, aditar a quantidade no carri
 
 # Tecnologias usadas
 
+### Desenvolvimento
+
 - Expo
 - React Native
 - Styled components
-- Firebase Auth
-- Firebase Storage
-- Firebase Firestore
 - React Navigation
+
+### Autenticação
+
+- Firebase Auth
+- Firebase Firestore
+
+### Storage de binários
+
+- Firebase Storage
+
+### Transpilação/Compilação
+
+- Babel
+- Typescript
+
+### CI/CD
+
+- Expo EAS
+
+### Testes
+
 - Jest
 - React testing library
+
+### Linters e formatação de código
+
 - Eslint
 - Prettier
 - Lint staged
-- Babel
-- Typescript
 - Commitlint
 - Husky
 
-# Obrigado!
+### Segurança
+
+- Expo doctor
+
