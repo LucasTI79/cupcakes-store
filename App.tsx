@@ -10,6 +10,8 @@ import React, { useCallback } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components/native';
 
+import { AuthProvider } from '@context/auth/auth';
+
 import { CartProvider } from './src/context/cart';
 import { queryClient } from './src/lib/queryClient';
 import { Routes } from './src/routes';
@@ -38,9 +40,11 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <StatusBar style="dark" translucent backgroundColor="transparent" />
         <QueryClientProvider client={queryClient}>
-          <CartProvider>
-            <Routes />
-          </CartProvider>
+          <AuthProvider>
+            <CartProvider>
+              <Routes />
+            </CartProvider>
+          </AuthProvider>
         </QueryClientProvider>
       </ThemeProvider>
     </GestureHandlerRootView>

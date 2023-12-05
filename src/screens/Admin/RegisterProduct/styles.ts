@@ -7,6 +7,9 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   padding: ${getStatusBarHeight() + 8}px 24px ${getBottomSpace() + 14}px;
   flex: 1;
+`;
+
+export const Content = styled.View`
   align-items: center;
   width: 100%;
   height: 100%;

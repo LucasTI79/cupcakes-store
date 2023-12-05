@@ -8,5 +8,9 @@ export function useProductDetailsController() {
 
   const { goBack } = navigate;
 
-  return { addCartItem, decreaseCartItem, getItemQuantity, goBack };
+  const goToCart = () => {
+    navigate.navigate('cart');
+  };
+
+  return { addCartItem, decreaseCartItem, getItemQuantity, goBack, goToCart };
 }

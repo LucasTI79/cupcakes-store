@@ -1,14 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigation } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useAuth } from '@hooks/useAuth';
-import { ProductFirebaseService } from '@services/products/products';
+import { ProductFirebaseService } from '@services/products/product-firebase.service';
 
 import { CreateProductSchema, CreateProductType } from './schema';
 
 export function useRegisterProductController() {
-  const { getCurrentUser } = useAuth();
+  const navigate = useNavigation();
+  const { user } = useAuth();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmiting, setIsSubmiting] = useState(false);
   const methods = useForm<CreateProductType>({
@@ -20,25 +22,27 @@ export function useRegisterProductController() {
     control,
     formState: { errors },
     handleSubmit: handleSubmitHook,
+    reset,
   } = methods;
 
   const handleSubmit = useCallback(
     handleSubmitHook(async (data) => {
       try {
         setIsSubmiting(true);
-        const user = await getCurrentUser();
-
-        const productService = new ProductFirebaseService();
+        const productService = new ProductFirebaseService(user);
         await productService.save({
           name: data.name,
           description: data.description,
           price: Number(data.price),
-          weight: data.weight,
+          weight: Number(data.weight),
           active: data.active,
           image: data.image,
-          userId: user.uid!,
+          userId: user!.uid!,
         });
+        reset();
+        navigate.navigate('products');
       } catch (error) {
+        console.log('erro aqui', error);
         setErrorMessage(error.message);
       } finally {
         setIsSubmiting(false);

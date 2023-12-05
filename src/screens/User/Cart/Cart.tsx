@@ -28,7 +28,7 @@ export function Cart() {
       <HeaderBack rightAction={hasItemIntoCart ? <ClearCartAction /> : null} />
       <FlatList
         data={items}
-        keyExtractor={(item: ProductItemCart) => item.id!}
+        keyExtractor={(item: ProductItemCart) => item.product.id!}
         renderItem={({ item }) => <CartCard item={item} />}
         contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}

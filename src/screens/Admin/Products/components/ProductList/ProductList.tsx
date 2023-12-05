@@ -3,7 +3,7 @@ import { FlatList, Text } from 'react-native';
 
 import { Load } from '@components/controllers/loading/Load';
 
-import { useHomeController } from '../../useHomeController';
+import { useProductController } from '../../useProductController';
 
 import { EmptyList } from './components/EmptyList';
 import { ProductCard } from './components/ProductCard';
@@ -12,21 +12,22 @@ import { Container, Content, ProductListTitle } from './styles';
 export function ProductList() {
   const {
     products: { isLoading, data, error, refetch },
-  } = useHomeController();
+  } = useProductController();
 
   const products = data;
-
-  const productsQuantity = products?.length ?? 0;
 
   if (isLoading) {
     return <Load />;
   }
 
+  if (error) {
+    return <Text>{error.message}</Text>;
+  }
+
   return (
     <Container>
-      <ProductListTitle>Total de produtos: {productsQuantity}</ProductListTitle>
+      <ProductListTitle>Total de produtos: {products.length}</ProductListTitle>
       <Content>
-        {error && <Text>{error.message}</Text>}
         <FlatList
           data={products}
           onRefresh={refetch}

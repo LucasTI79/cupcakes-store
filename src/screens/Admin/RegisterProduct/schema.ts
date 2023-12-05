@@ -4,9 +4,9 @@ export const CreateProductSchema = z.object({
   name: z.string({ required_error: 'Name is required' }),
   description: z.string({ required_error: 'Description is required' }),
   price: z.string(),
-  weight: z.number({ required_error: 'Weigth is required' }),
+  weight: z.string(),
   image: z.string(),
-  active: z.boolean().default(false),
+  active: z.boolean().default(true),
 });
 
 export type CreateProductType = z.infer<typeof CreateProductSchema>;

@@ -4,11 +4,11 @@ import { HomeIcon, ShoppingCartIcon, UserIcon } from 'lucide-react-native';
 import React from 'react';
 import { useTheme } from 'styled-components/native';
 
+import { Profile } from '@screens/Common/Profile';
 import { Cart } from '@screens/User/Cart';
 import { Checkout } from '@screens/User/Checkout';
 import { Home } from '@screens/User/Home';
 import { ProductDetails } from '@screens/User/ProductDetails';
-import { Profile } from '@screens/User/Profile';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();

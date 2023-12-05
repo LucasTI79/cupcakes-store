@@ -9,7 +9,7 @@ import React, {
 import { Cart, ProductItemCart } from './types';
 
 type CartAction =
-  | { type: 'ADD_TO_CART'; payload: Product }
+  | { type: 'ADD_TO_CART'; payload: Product & { price: number } }
   | { type: 'REMOVE_FROM_CART'; payload: string }
   | { type: 'DECREASE_QUANTITY'; payload: string }
   | { type: 'CLEAR_CART'; payload: undefined };
@@ -17,7 +17,7 @@ type CartAction =
 type CartContextType = {
   items: ProductItemCart[];
   dispatch: React.Dispatch<CartAction>;
-  addCartItem: (product: Product) => void;
+  addCartItem: (product: Product & { price: number }) => void;
   removeCartItem: (itemId: string) => void;
   decreaseCartItem: (itemId: string) => void;
   clearCart: () => void;
@@ -78,7 +78,7 @@ const cartReducer = (state: Cart, action: CartAction): Cart => {
 export function CartProvider({ children }: Readonly<{ children: ReactNode }>) {
   const [state, dispatch] = useReducer(cartReducer, { items: [] });
 
-  const addCartItem = useCallback((product: Product) => {
+  const addCartItem = useCallback((product: Product & { price: number }) => {
     dispatch({ type: 'ADD_TO_CART', payload: product });
   }, []);
 
