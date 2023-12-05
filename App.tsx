@@ -10,12 +10,12 @@ import React, { useCallback } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider } from 'styled-components/native';
 
-import { AuthProvider } from '@context/auth/auth';
+import { AuthProvider } from '@context/auth';
+import { CartProvider } from '@context/cart';
+import { queryClient } from '@lib/queryClient';
+import theme from '@theme/index';
 
-import { CartProvider } from './src/context/cart';
-import { queryClient } from './src/lib/queryClient';
 import { Routes } from './src/routes';
-import theme from './src/theme';
 
 SplashScreen.preventAutoHideAsync();
 

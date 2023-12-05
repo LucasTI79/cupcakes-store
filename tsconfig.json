@@ -13,34 +13,34 @@
         "./src"
       ],
       "@components/*": [
-        "./src/components/*"
+        "./src/view/components/*"
       ],
       "@screens/*": [
-        "./src/screens/*"
+        "./src/view/screens/*"
       ],
       "@assets/*": [
         "./src/assets/*"
       ],
       "@hooks/*": [
-        "./src/hooks/*"
+        "src/app/hooks/*"
       ],
       "@services/*": [
-        "./src/services/*"
+        "./src/app/services/*"
       ],
       "@models/*": [
-        "./src/models/*"
+        "./src/app/models/*"
       ],
       "@utils/*": [
-        "./src/utils/*"
+        "src/app/utils/*"
       ],
       "@context/*": [
-        "./src/context/*"
+        "./src/app/context/*"
       ],
       "@lib/*": [
-        "./src/lib/*"
+        "./src/app/lib/*"
       ],
       "@theme/*": [
-        "./src/theme/*"
+        "./src/view/theme/*"
       ],
     }
   }
