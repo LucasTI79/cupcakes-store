@@ -37,14 +37,25 @@ type ProductRecord = {
 interface ProductRecordRequest extends Omit<ProductRecord, 'id'> {}
 
 type OrderStatus = 'pending' | 'completed' | 'canceled' | 'delivered';
+type PaymentMethods = 'credit-card' | 'debit' | 'pix' | 'cash';
 
 type Order = {
   id?: string;
   sellerId: string;
   buyerId: string;
+  paymentMethod: PaymentMethods;
   products: { product: ProductRecord; quantity: number }[];
   total: number;
   status: OrderStatus;
   createdAt: Date;
   updatedAt: Date;
+};
+
+type OrderRequest = {
+  sellerId: string;
+  buyerId: string;
+  paymentMethod: PaymentMethods;
+  products: { product: ProductRecord; quantity: number }[];
+  total: number;
+  status: OrderStatus;
 };

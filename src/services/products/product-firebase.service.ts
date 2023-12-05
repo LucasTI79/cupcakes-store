@@ -125,7 +125,9 @@ export class ProductFirebaseService implements IProductService {
       createdAt: new Date(),
     };
     getProductRecordStore.add(productRecordToSave);
-    queryClient.invalidateQueries('products');
+    await queryClient.invalidateQueries({
+      queryKey: ['products'],
+    });
   }
 
   async update(productId: string, product: ProductRequest): Promise<void> {
@@ -160,7 +162,10 @@ export class ProductFirebaseService implements IProductService {
       await getProductRecordStore.add(productRecordToSave);
     }
 
-    getProductStore.doc(productId).update(productToSave);
+    await getProductStore.doc(productId).update(productToSave);
+    await queryClient.invalidateQueries({
+      queryKey: ['products'],
+    });
   }
 
   async deleteProduct(productId: string): Promise<void> {
@@ -176,6 +181,9 @@ export class ProductFirebaseService implements IProductService {
     if (this.user?.uid !== productData.userId) {
       throw new Error('Usuário não autorizado');
     }
-    getProductStore.doc(productId).delete();
+    await getProductStore.doc(productId).delete();
+    await queryClient.invalidateQueries({
+      queryKey: ['products'],
+    });
   }
 }

@@ -44,7 +44,7 @@ export function Checkout() {
         id: String(paymentForm.id),
         color: COLORS.PRIMARY,
       })),
-    [paymentForms],
+    [paymentForms, COLORS],
   );
 
   if (isLoading) {
@@ -65,7 +65,7 @@ export function Checkout() {
       <PaymentFormContainer>
         <RadioGroup
           radioButtons={radioButtons}
-          onPress={handleChangePaymentForm}
+          onPress={(data) => handleChangePaymentForm(data)}
           selectedId={selectedPaymentForm}
           containerStyle={{ alignItems: 'flex-start' }}
         />

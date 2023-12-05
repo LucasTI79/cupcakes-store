@@ -3,6 +3,13 @@ import { useCallback, useState } from 'react';
 
 import { useCart } from '@hooks/useCart';
 
+const paymentForms = [
+  { id: '1', name: 'Crédito', value: 'credit-card' },
+  { id: '2', name: 'Débito', value: 'debit' },
+  { id: '3', name: 'Pix', value: 'pix' },
+  { id: '4', name: 'Dinheiro', value: 'cash' },
+];
+
 export function useCheckoutController() {
   const { items, total } = useCart();
 
@@ -11,18 +18,15 @@ export function useCheckoutController() {
   >(undefined);
 
   const handleChangePaymentForm = useCallback((paymentFormId: string) => {
-    setSelectedPaymentForm(paymentFormId);
+    const selectedPaymentFormMatch = paymentForms.find(
+      (form) => form.id === paymentFormId,
+    );
+    setSelectedPaymentForm(selectedPaymentFormMatch?.id);
   }, []);
 
   const { data = [], isLoading } = useQuery({
     queryFn: async () => {
       await Promise.resolve(setTimeout(() => {}, 1000));
-      const paymentForms = [
-        { id: 1, name: 'Crédito' },
-        { id: 2, name: 'Débito' },
-        { id: 3, name: 'Pix' },
-        { id: 4, name: 'Dinheiro' },
-      ];
       return paymentForms;
     },
     queryKey: ['paymentForms'],
