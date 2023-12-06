@@ -56,3 +56,21 @@ Nele é possível escolher quantos Cupcakes quiser, aditar a quantidade no carri
 
 https://drive.google.com/file/d/1RbYGoR6QrLqwlj_dTCGcKtnW3PDOpATQ/view?usp=drive_link
 
+
+### Screenshots
+
+![cadastrarProduto](/docs/assets/cadastrarProduto.png)
+![cadastro](/docs/assets/cadastro.png)
+![carrinho](/docs/assets/carrinho.png)
+![carrinhoVazio](/docs/assets/carrinhoVazio.png)
+![checkout](/docs/assets/checkout.png)
+![confirmacao](/docs/assets/confirmacao.png)
+![detalhesPedidoAdmin](/docs/assets/detalhesPedidoAdmin.png)
+![home](/docs/assets/home.png)
+![login](/docs/assets/login.png)
+![meusProdutos](/docs/assets/meusProdutos.png)
+![pedidosAdmin](/docs/assets/pedidosAdmin.png)
+![pedidosUsuario](/docs/assets/pedidosUsuario.png)
+![perfil](/docs/assets/perfil.png)
+![recuperarSenha](/docs/assets/recuperarSenha.png)
+
