@@ -21,7 +21,6 @@ export function useRegisterController() {
 
   const methods = useForm<RegisterSchemaType>({
     resolver: zodResolver(RegisterSchema),
-    mode: 'onChange',
   });
 
   const {
@@ -34,11 +33,11 @@ export function useRegisterController() {
   const handleSubmit = useCallback(
     handleSubmitHook((data) => {
       setIsSubmiting(true);
-      const { email, password, fullname, isAdmin } = data;
+      const { email, password, fullname, isAdmin, phone } = data;
 
       const handler = isAdmin ? handleRegisterAdmin : handleRegister;
 
-      handler(email, password, fullname)
+      handler(email, password, fullname, phone)
         .catch((error) => {
           setRegisterErrorMessage(error.message);
         })

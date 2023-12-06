@@ -17,7 +17,7 @@ export function useEditProductController() {
   const [isSubmiting, setIsSubmiting] = useState(false);
   const methods = useForm<EditProductType>({
     resolver: zodResolver(EditProductSchema),
-    mode: 'onChange',
+
     defaultValues: {
       productId: productToBeUpdated?.id,
       name: productToBeUpdated?.name,

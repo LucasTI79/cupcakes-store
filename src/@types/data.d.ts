@@ -77,8 +77,10 @@ type OrderResponse = {
   id: string;
   sellerId: string;
   sellerName: string;
+  sellerPhone: string;
   buyerId: string;
   buyerName: string;
+  buyerPhone: string;
   paymentMethod: PaymentMethods;
   products: {
     product: ProductResponse;

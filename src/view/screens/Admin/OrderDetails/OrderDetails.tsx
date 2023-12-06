@@ -1,10 +1,10 @@
+import React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 
 import { Button, ButtonOutline } from '@components/controllers/buttons/Button';
 import { HeaderBack } from '@components/layout/HeaderBack';
 import { currencyFormat } from '@utils/currencyFormat';
 
-import React from 'react';
 import { ProductItemInfo } from './components/ProductItemInfo';
 import {
   Container,
@@ -41,6 +41,9 @@ export function OrderDetails({
       <OrderInfoContainer>
         <Title>
           Cliente: <SubTitle>{order.buyerName}</SubTitle>
+        </Title>
+        <Title>
+          Telefone: <SubTitle>{order.buyerPhone}</SubTitle>
         </Title>
         <Title>
           Forma de pagamento: <SubTitle>{order.paymentMethod}</SubTitle>

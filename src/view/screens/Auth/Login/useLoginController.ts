@@ -17,7 +17,6 @@ export function useLoginController() {
 
   const methods = useForm<LoginSchemaType>({
     resolver: zodResolver(LoginSchema),
-    mode: 'onChange',
   });
 
   const {
@@ -42,7 +41,7 @@ export function useLoginController() {
               'auth/wrong-password',
             ].includes(error.code)
           ) {
-            setLoginErrorMessage('Invalid credentials');
+            setLoginErrorMessage('Credeciais inválidas');
           }
         })
         .finally(() => {

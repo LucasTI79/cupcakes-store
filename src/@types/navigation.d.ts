@@ -28,6 +28,7 @@ export declare global {
       registerProduct: undefined;
       checkout: undefined;
       profile: undefined;
+      finishOrder: undefined;
     }
   }
 }

@@ -2,22 +2,23 @@ import z from 'zod';
 
 export const RegisterSchema = z
   .object({
-    fullname: z.string({ required_error: 'Fullname is required' }),
+    fullname: z.string({ required_error: 'Nome é obrigatório' }),
+    phone: z.string({ required_error: 'Celular é obrigatório' }),
     email: z
-      .string({ required_error: 'Email is required' })
-      .email({ message: 'Invalid email' }),
+      .string({ required_error: 'Email é obrigatório' })
+      .email({ message: 'Email inválido' }),
     isAdmin: z.boolean().default(false),
     password: z
-      .string({ required_error: 'Password is required' })
-      .min(6)
-      .max(20),
+      .string({ required_error: 'Senha é obrigatória' })
+      .min(6, { message: 'Mínimo de 6 caracteres' })
+      .max(20, { message: 'Máximo de 20 caracteres' }),
     confirmPassword: z
-      .string({ required_error: 'Confirm password is required' })
-      .min(6)
-      .max(20),
+      .string({ required_error: 'Confirmação de senha é obrigatória' })
+      .min(6, { message: 'Mínimo de 6 caracteres' })
+      .max(20, { message: 'Máximo de 20 caracteres' }),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: 'Password and Confirm password must be the same',
+    message: 'As senhas não coincidem',
     path: ['confirmPassword'],
   });
 

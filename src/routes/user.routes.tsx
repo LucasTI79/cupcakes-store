@@ -14,6 +14,7 @@ import { useTheme } from 'styled-components/native';
 import { Profile } from '@screens/Common/Profile';
 import { Cart } from '@screens/User/Cart';
 import { Checkout } from '@screens/User/Checkout';
+import { FinishOrder } from '@screens/User/FinishOrder';
 import { Home } from '@screens/User/Home';
 import { Order } from '@screens/User/Order';
 import { OrderDetails } from '@screens/User/OrderDetails';
@@ -44,13 +45,8 @@ function CartStack() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="cartStack" component={Cart} />
-      <Screen
-        name="checkout"
-        component={Checkout}
-        options={{
-          title: 'Pagamento',
-        }}
-      />
+      <Screen name="checkout" component={Checkout} />
+      <Screen name="finishOrder" component={FinishOrder} />
     </Navigator>
   );
 }

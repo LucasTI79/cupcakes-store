@@ -21,6 +21,7 @@ export const handleRegisterUser = async (
   email: string,
   password: string,
   fullname: string,
+  phone: string,
 ) => {
   const userCredential = await auth().createUserWithEmailAndPassword(
     email,
@@ -29,6 +30,7 @@ export const handleRegisterUser = async (
   await getUsersStore.doc(userCredential.user?.uid).set({
     role: 'USER',
     fullname,
+    phone,
   });
 };
 
@@ -36,6 +38,7 @@ export const handleRegisterAdmin = async (
   email: string,
   password: string,
   fullname: string,
+  phone: string,
 ) => {
   const userCredential = await auth().createUserWithEmailAndPassword(
     email,
@@ -44,6 +47,7 @@ export const handleRegisterAdmin = async (
   await getUsersStore.doc(userCredential.user?.uid).set({
     role: 'ADMIN',
     fullname,
+    phone,
   });
 };
 

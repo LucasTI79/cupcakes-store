@@ -39,6 +39,9 @@ export function OrderDetails({
           Vendedor: <SubTitle>{order.sellerName}</SubTitle>
         </Title>
         <Title>
+          Telefone: <SubTitle>{order.sellerPhone}</SubTitle>
+        </Title>
+        <Title>
           Forma de pagamento: <SubTitle>{order.paymentMethod}</SubTitle>
         </Title>
         <Title>

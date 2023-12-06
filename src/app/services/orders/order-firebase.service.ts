@@ -95,7 +95,9 @@ export class OrderFirebaseService implements IOrderService {
         return {
           id: order.id,
           buyerName: buyerData?.fullname,
+          buyerPhone: buyerData?.phone,
           sellerName: sellerData?.fullname,
+          sellerPhone: sellerData?.phone,
           status: orderData.status,
           buyerId: orderData.buyerId,
           sellerId: orderData.sellerId,
@@ -150,7 +152,9 @@ export class OrderFirebaseService implements IOrderService {
         return {
           id: order.id,
           buyerName: buyerData?.fullname,
+          buyerPhone: buyerData?.phone,
           sellerName: sellerData?.fullname,
+          sellerPhone: sellerData?.phone,
           status: orderData.status,
           buyerId: orderData.buyerId,
           sellerId: orderData.sellerId,
@@ -207,7 +211,9 @@ export class OrderFirebaseService implements IOrderService {
         return {
           id: order.id,
           buyerName: buyerData?.fullname,
+          buyerPhone: buyerData?.phone,
           sellerName: sellerData?.fullname,
+          sellerPhone: sellerData?.phone,
           status: orderData.status,
           buyerId: orderData.buyerId,
           sellerId: orderData.sellerId,
@@ -264,6 +270,7 @@ export class OrderFirebaseService implements IOrderService {
         status: orderData.status,
         buyerId: orderData.buyerId,
         sellerId: orderData.sellerId,
+        phone: orderData.phone,
         paymentMethod: orderData.paymentMethod,
         total: orderData.total,
         products,

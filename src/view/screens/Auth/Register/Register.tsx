@@ -68,6 +68,21 @@ export function Register() {
               />
             )}
           />
+          <Controller
+            control={control}
+            name="phone"
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                placeholder="Celular"
+                placeholderTextColor="#aaaaaa"
+                onChangeText={onChange}
+                value={value}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+                errorMessage={formErrors?.phone?.message}
+              />
+            )}
+          />
 
           <Controller
             control={control}
@@ -116,7 +131,7 @@ export function Register() {
 
         <Button
           isLoading={isSubmiting}
-          title="Create account"
+          title="Criar conta"
           onPress={handleSubmit}
         />
         {registerErrorMessage && (

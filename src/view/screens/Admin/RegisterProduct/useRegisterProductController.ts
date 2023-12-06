@@ -15,7 +15,6 @@ export function useRegisterProductController() {
   const [isSubmiting, setIsSubmiting] = useState(false);
   const methods = useForm<CreateProductType>({
     resolver: zodResolver(CreateProductSchema),
-    mode: 'onChange',
   });
 
   const {

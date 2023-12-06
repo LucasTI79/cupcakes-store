@@ -11,6 +11,14 @@ export const Container = styled.View`
   gap: 16px;
 `;
 
+export const InputContainer = styled.View`
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+`;
+
 export const PaymentFormContainer = styled.View`
   flex: 1;
   width: 100%;

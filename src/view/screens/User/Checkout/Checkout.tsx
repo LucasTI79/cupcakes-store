@@ -59,6 +59,7 @@ export function Checkout() {
     <Container>
       <HeaderBack />
       <Title>Checkout</Title>
+
       <Label>Selecione a forma de pagamento</Label>
       <PaymentFormContainer>
         <Controller
@@ -75,6 +76,7 @@ export function Checkout() {
           )}
         />
       </PaymentFormContainer>
+
       <OrderInfoContainer>
         <OrderInfoTitle>Informações do pedido</OrderInfoTitle>
         <FlatList

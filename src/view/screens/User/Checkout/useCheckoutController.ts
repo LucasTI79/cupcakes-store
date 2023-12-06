@@ -34,7 +34,7 @@ export function useCheckoutController() {
 
   const methods = useForm<CreateOrderType>({
     resolver: zodResolver(CreateOrderSchema),
-    mode: 'onChange',
+
     defaultValues: {
       buyerId: user?.uid,
       sellerId: items[0]?.product.userId,
@@ -84,7 +84,7 @@ export function useCheckoutController() {
         });
         reset();
         clearCart();
-        navigate.navigate('homeStack');
+        navigate.navigate('finishOrder');
       } catch (error) {
         setErrorMessage(error.message);
       } finally {
